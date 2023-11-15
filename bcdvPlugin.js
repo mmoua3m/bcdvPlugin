@@ -50,9 +50,9 @@ videojs.registerPlugin('bcdvPlugin', function() {
   // Transcript button code
   function transcriptButton(){
     // Create our transcriptBox div to add transcript text to
-    const newDiv = document.createElement("div");
+    var newDiv = document.createElement("div");
     newDiv.setAttribute("id", "transcriptBox")
-    const currentDiv = document.getElementById("myPlayerID");
+    var currentDiv = document.getElementById("myPlayerID");
     insertAfter(newDiv, currentDiv)
 
     //The button itself

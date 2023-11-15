@@ -97,14 +97,14 @@ videojs.registerPlugin('bcdvPlugin', function() {
     catch(err) {
       console.log(err)
     }
-    try {
-      if ( myPlayer.mediainfo.transcripts[0] ){ //Check for a transcript (the first one found)
-        transcriptButton()
-      }
-    }
-    catch(err) {
-      console.log(err)
-    }
+    //try {
+      //if ( myPlayer.mediainfo.transcripts[0] ){ //Check for a transcript (the first one found)
+        //transcriptButton()
+      //}
+    //}
+    //catch(err) {
+      //console.log(err)
+    //}
     //Add our buttons back after the new one(s)
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
     myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')

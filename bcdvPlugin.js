@@ -25,22 +25,27 @@ videojs.registerPlugin('bcdvPlugin', function() {
       controlText: 'Described Video',
       className: 'vjs-visible-text',
       clickHandler: function() {
-        //Load and play video based on what's already loaded
-        if ( watchingOriginalVideo == true ) { //If we have the original video loaded and we click the button, load the described video
-          myPlayer.catalog.getVideo(describedVideoID, function(error, video) {
-            myPlayer.catalog.load(video);
-            myPlayer.play();
-          })
-          dvButton.controlText("Original Video") //Change our button text
-          watchingOriginalVideo = false; //Flip the switch so we know what we're currently watching
+        try{
+          //Load and play video based on what's already loaded
+          if ( watchingOriginalVideo == true ) { //If we have the original video loaded and we click the button, load the described video
+            myPlayer.catalog.getVideo(describedVideoID, function(error, video) {
+              myPlayer.catalog.load(video);
+              myPlayer.play();
+            })
+            dvButton.controlText("Original Video") //Change our button text
+            watchingOriginalVideo = false; //Flip the switch so we know what we're currently watching
+          }
+          else {  //If we have the described video loaded and we click the button, load the original video
+            myPlayer.catalog.getVideo(originalID, function(error, video) {
+              myPlayer.catalog.load(video);
+              myPlayer.play();
+            })
+            dvButton.controlText("Described Video") //Change our button text
+            watchingOriginalVideo = true; //Flip the switch so we know what we're currently watching
+          }
         }
-        else {  //If we have the described video loaded and we click the button, load the original video
-          myPlayer.catalog.getVideo(originalID, function(error, video) {
-            myPlayer.catalog.load(video);
-            myPlayer.play();
-          })
-          dvButton.controlText("Described Video") //Change our button text
-          watchingOriginalVideo = true; //Flip the switch so we know what we're currently watching
+        catch(err) {
+          console.log(err)
         }
       }
 
@@ -50,9 +55,9 @@ videojs.registerPlugin('bcdvPlugin', function() {
   // Transcript button code
   function transcriptButton(){
     // Create our transcriptBox div to add transcript text to
-    var newDiv = document.createElement("div");
+    const newDiv = document.createElement("div");
     newDiv.setAttribute("id", "transcriptBox")
-    var currentDiv = document.getElementById("myPlayerID");
+    const currentDiv = document.getElementById("myPlayerID");
     insertAfter(newDiv, currentDiv)
 
     //The button itself
@@ -97,14 +102,14 @@ videojs.registerPlugin('bcdvPlugin', function() {
     catch(err) {
       console.log(err)
     }
-    //try {
-      //if ( myPlayer.mediainfo.transcripts[0] ){ //Check for a transcript (the first one found)
-        //transcriptButton()
-      //}
-    //}
-    //catch(err) {
-      //console.log(err)
-    //}
+    try {
+      if ( myPlayer.mediainfo.transcripts[0] ){ //Check for a transcript (the first one found)
+        transcriptButton()
+      }
+    }
+    catch(err) {
+      console.log(err)
+    }
     //Add our buttons back after the new one(s)
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
     myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')

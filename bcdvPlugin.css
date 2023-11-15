@@ -1,0 +1,26 @@
+.vjs-overlay {
+  background-color: #333333;
+  color: white;
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 20px;
+}
+
+/* Styling our transcript box */
+#transcriptBox {
+  display: none;
+  margin-top: 2px;
+  margin-bottom: 5px;
+  width: 600px;
+  overflow:scroll; 
+  height:300px;
+  border: 1px;
+  border-style: solid;
+  border-color: gray;
+  background-color: white;
+}
+
+/* Set our custom buttons to have a cursor change (hand) effect */
+.vjs-visible-text:hover{
+  cursor: pointer;
+}

@@ -1,4 +1,4 @@
-// 11-15-2023 8:52AM
+// 11-15-2023 11:15AM
 videojs.registerPlugin('bcdvPlugin', function() {
   var myPlayer = this //Our video player
   var originalID;
@@ -13,11 +13,6 @@ videojs.registerPlugin('bcdvPlugin', function() {
     // console.log("Original video ID is", originalID)
     // console.log(myPlayer.mediainfo)
   }, 500)
-
-  // Used for HTML DOM placement of our transcript box
-  function insertAfter(newNode, refNode){
-    refNode.parentNode.insertBefore(newNode, refNode.nextSibling);
-   }
 
   // Remove buttons for reordering if we don't remove these, our custome button will appear at the end. We'll add these back at the bottom
   myPlayer.getChild('ControlBar').removeChild('FullscreenToggle')
@@ -57,10 +52,7 @@ videojs.registerPlugin('bcdvPlugin', function() {
     // Create our transcriptBox div to add transcript text to
     var newDiv = document.createElement("div");
     newDiv.setAttribute("id", "transcriptBox")
-    // var currentDiv = document.getElementById("myPlayerID");
-    // var currentDiv = document.getElementsByClassName;
-    // insertAfter(newDiv, currentDiv)
-    document.body.appendChild(newDiv);  
+    document.body.appendChild(newDiv); //Append our new transcriptBox div
     //The button itself
     var transcriptButton = myPlayer.getChild('ControlBar').addChild('button', {
       controlText: 'Transcript',
@@ -70,11 +62,13 @@ videojs.registerPlugin('bcdvPlugin', function() {
           var tBox = document.getElementById("transcriptBox")
           tBox.style.display = 'none'
           viewingTranscript = false;
+          console.log("Transcript hidden")
         }
         else { //If we're not viewing the transcript, show the transcript div
           var tBox = document.getElementById("transcriptBox")
           tBox.style.display = 'block'
           viewingTranscript = true;
+          console.log("Transcript visible")
         }
       }
     })

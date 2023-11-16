@@ -3,15 +3,15 @@ videojs.registerPlugin('bcdvPlugin', function() {
   var myPlayer = this //Our video player
   var originalID;
   var describedVideoID;
+  var tText = "" //Our transcript text
+  var watchingOriginalVideo = true; //Tracks if we're watching the original video or the described video
+  var viewingTranscript = false;
   setTimeout(function(){
     originalID = myPlayer.mediainfo.id //Original videoID we loaded with, this is used for switching back to viewing from described video
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
     console.log("Described video ID is", describedVideoID)
     console.log("Original video ID is", originalID)
     console.log(myPlayer.mediainfo)
-    let tText = "" //Our transcript text
-    let watchingOriginalVideo = true; //Tracks if we're watching the original video or the described video
-    let viewingTranscript = false;
   }, 500)
 
   // Used for HTML DOM placement of our transcript box

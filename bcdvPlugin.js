@@ -1,10 +1,12 @@
-// 11-15-2023 8:52AM
+// 11-16-2023 8:52AM
 videojs.registerPlugin('bcdvPlugin', function() {
   var myPlayer = this //Our video player
   let originalID = myPlayer.mediainfo.id //Original videoID we loaded with, this is used for switching back to viewing from described video
   let describedVideoID;
   setTimeout(function(){
-    describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id}, 500)
+    describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
+    console.log("Described video ID is", describedVideoID)
+  }, 500)
   let tText = "" //Our transcript text
   let watchingOriginalVideo = true; //Tracks if we're watching the original video or the described video
   let viewingTranscript = false;

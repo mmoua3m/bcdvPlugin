@@ -15,9 +15,9 @@ videojs.registerPlugin('bcdvPlugin', function() {
   }, 500)
 
   // Used for HTML DOM placement of our transcript box
-  // function insertAfter(newNode, refNode){
-  //   refNode.parentNode.insertBefore(newNode, refNode.nextSibling);
-  //  }
+  function insertAfter(newNode, refNode){
+    refNode.parentNode.insertBefore(newNode, refNode.nextSibling);
+   }
 
   // Remove buttons for reordering if we don't remove these, our custome button will appear at the end. We'll add these back at the bottom
   myPlayer.getChild('ControlBar').removeChild('FullscreenToggle')
@@ -53,43 +53,40 @@ videojs.registerPlugin('bcdvPlugin', function() {
   }
 
   // Transcript button code
-  // function transcriptButton(){
-  //   // Create our transcriptBox div to add transcript text to
-  //   const newDiv = document.createElement("div");
-  //   newDiv.setAttribute("id", "transcriptBox")
-  //   const currentDiv = document.getElementById("myPlayerID");
-  //   insertAfter(newDiv, currentDiv)
-
-  //   //The button itself
-  //   const transcriptButton = myPlayer.getChild('ControlBar').addChild('button', {
-  //     controlText: 'Transcript',
-  //     className: 'vjs-visible-text',
-  //     clickHandler: function(event) { //What the button does upon being clicked
-  //       if  ( viewingTranscript ){ //If we can already see the transcript, hide the transcript div
-  //         const tBox = document.getElementById("transcriptBox")
-  //         tBox.style.display = 'none'
-  //         viewingTranscript = false;
-  //       }
-  //       else { //If we're not viewing the transcript, show the transcript div
-  //         const tBox = document.getElementById("transcriptBox")
-  //         tBox.style.display = 'block'
-  //         viewingTranscript = true;
-  //       }
-  //     }
-  //   })
-
-  //   //Check the transcript URL linked and retrieve the text
-  //   let tURL = myPlayer.mediainfo.transcripts[0].src.replace("http://", "https://") // Make transcript secure, otherwise we error
-  //   fetch(tURL)
-  //     .then(function(response) {
-  //       response.text().then(function(text) {
-  //         tText = text
-  //         const tBox = document.getElementById("transcriptBox")
-  //         tBox.innerText = tText
-  //       })
-  //     })
-        
-  // }
+  function transcriptButton(){
+    // Create our transcriptBox div to add transcript text to
+    const newDiv = document.createElement("div");
+    newDiv.setAttribute("id", "transcriptBox")
+    const currentDiv = document.getElementById("myPlayerID");
+    insertAfter(newDiv, currentDiv)
+    //The button itself
+    const transcriptButton = myPlayer.getChild('ControlBar').addChild('button', {
+      controlText: 'Transcript',
+      className: 'vjs-visible-text',
+      clickHandler: function(event) { //What the button does upon being clicked
+        if  ( viewingTranscript ){ //If we can already see the transcript, hide the transcript div
+          const tBox = document.getElementById("transcriptBox")
+          tBox.style.display = 'none'
+          viewingTranscript = false;
+        }
+        else { //If we're not viewing the transcript, show the transcript div
+          const tBox = document.getElementById("transcriptBox")
+          tBox.style.display = 'block'
+          viewingTranscript = true;
+        }
+      }
+    })
+    //Check the transcript URL linked and retrieve the text
+    let tURL = myPlayer.mediainfo.transcripts[0].src.replace("http://", "https://") // Make transcript secure, otherwise we error
+    fetch(tURL)
+      .then(function(response) {
+        response.text().then(function(text) {
+          tText = text
+          const tBox = document.getElementById("transcriptBox")
+          tBox.innerText = tText
+        })
+      })
+  }
 
   //Check for transcript and described video, add buttons if found, do it in a timely manner so the data is fully loaded before we try
   setTimeout(function(){
@@ -102,14 +99,14 @@ videojs.registerPlugin('bcdvPlugin', function() {
     catch(err) {
       console.log(err)
     }
-    // try {
-    //   if ( myPlayer.mediainfo.transcripts[0] ){ //Check for a transcript (the first one found)
-    //     transcriptButton()
-    //   }
-    // }
-    // catch(err) {
-    //   console.log(err)
-    // }
+    try {
+      if ( myPlayer.mediainfo.transcripts[0] ){ //Check for a transcript (the first one found)
+        transcriptButton()
+      }
+    }
+    catch(err) {
+      console.log(err)
+    }
     //Add our buttons back after the new one(s)
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
     myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')

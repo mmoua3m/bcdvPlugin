@@ -1,9 +1,11 @@
 // 11-15-2023 8:52AM
 videojs.registerPlugin('bcdvPlugin', function() {
   var myPlayer = this //Our video player
+  var originalID;
+  var describedVideoID;
   setTimeout(function(){
-    let originalID = myPlayer.mediainfo.id //Original videoID we loaded with, this is used for switching back to viewing from described video
-    let describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
+    originalID = myPlayer.mediainfo.id //Original videoID we loaded with, this is used for switching back to viewing from described video
+    describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
     console.log("Described video ID is", describedVideoID)
     console.log("Original video ID is", originalID)
     console.log(myPlayer.mediainfo)

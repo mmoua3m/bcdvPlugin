@@ -57,8 +57,10 @@ videojs.registerPlugin('bcdvPlugin', function() {
     // Create our transcriptBox div to add transcript text to
     var newDiv = document.createElement("div");
     newDiv.setAttribute("id", "transcriptBox")
-    var currentDiv = document.getElementById("myPlayerID");
-    insertAfter(newDiv, currentDiv)
+    // var currentDiv = document.getElementById("myPlayerID");
+    // var currentDiv = document.getElementsByClassName;
+    // insertAfter(newDiv, currentDiv)
+    document.body.appendChild(newDiv);  
     //The button itself
     var transcriptButton = myPlayer.getChild('ControlBar').addChild('button', {
       controlText: 'Transcript',
@@ -100,7 +102,6 @@ videojs.registerPlugin('bcdvPlugin', function() {
       console.log(err)
     }
     try {
-      console.log("info before transcript check", myPlayer.mediainfo)
       if ( myPlayer.mediainfo.transcripts[0] ){ //Check for a transcript (the first one found)
         transcriptButton()
       }

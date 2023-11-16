@@ -55,22 +55,22 @@ videojs.registerPlugin('bcdvPlugin', function() {
   // Transcript button code
   function transcriptButton(){
     // Create our transcriptBox div to add transcript text to
-    const newDiv = document.createElement("div");
+    var newDiv = document.createElement("div");
     newDiv.setAttribute("id", "transcriptBox")
-    const currentDiv = document.getElementById("myPlayerID");
+    var currentDiv = document.getElementById("myPlayerID");
     insertAfter(newDiv, currentDiv)
     //The button itself
-    const transcriptButton = myPlayer.getChild('ControlBar').addChild('button', {
+    var transcriptButton = myPlayer.getChild('ControlBar').addChild('button', {
       controlText: 'Transcript',
       className: 'vjs-visible-text',
       clickHandler: function(event) { //What the button does upon being clicked
         if  ( viewingTranscript ){ //If we can already see the transcript, hide the transcript div
-          const tBox = document.getElementById("transcriptBox")
+          var tBox = document.getElementById("transcriptBox")
           tBox.style.display = 'none'
           viewingTranscript = false;
         }
         else { //If we're not viewing the transcript, show the transcript div
-          const tBox = document.getElementById("transcriptBox")
+          var tBox = document.getElementById("transcriptBox")
           tBox.style.display = 'block'
           viewingTranscript = true;
         }
@@ -82,7 +82,7 @@ videojs.registerPlugin('bcdvPlugin', function() {
       .then(function(response) {
         response.text().then(function(text) {
           tText = text
-          const tBox = document.getElementById("transcriptBox")
+          var tBox = document.getElementById("transcriptBox")
           tBox.innerText = tText
         })
       })

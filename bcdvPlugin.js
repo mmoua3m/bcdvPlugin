@@ -1,20 +1,21 @@
-// 11-16-2023 8:52AM
+// 11-15-2023 8:52AM
 videojs.registerPlugin('bcdvPlugin', function() {
   var myPlayer = this //Our video player
-  let originalID = myPlayer.mediainfo.id //Original videoID we loaded with, this is used for switching back to viewing from described video
-  let describedVideoID;
   setTimeout(function(){
-    describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
+    let originalID = myPlayer.mediainfo.id //Original videoID we loaded with, this is used for switching back to viewing from described video
+    let describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
     console.log("Described video ID is", describedVideoID)
+    console.log("Original video ID is", originalID)
+    console.log(myPlayer.mediainfo)
+    let tText = "" //Our transcript text
+    let watchingOriginalVideo = true; //Tracks if we're watching the original video or the described video
+    let viewingTranscript = false;
   }, 500)
-  let tText = "" //Our transcript text
-  let watchingOriginalVideo = true; //Tracks if we're watching the original video or the described video
-  let viewingTranscript = false;
 
   // Used for HTML DOM placement of our transcript box
-  function insertAfter(newNode, refNode){
-    refNode.parentNode.insertBefore(newNode, refNode.nextSibling);
-   }
+  // function insertAfter(newNode, refNode){
+  //   refNode.parentNode.insertBefore(newNode, refNode.nextSibling);
+  //  }
 
   // Remove buttons for reordering if we don't remove these, our custome button will appear at the end. We'll add these back at the bottom
   myPlayer.getChild('ControlBar').removeChild('FullscreenToggle')
@@ -116,6 +117,6 @@ videojs.registerPlugin('bcdvPlugin', function() {
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
     myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
     myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
-  }, 1000) //500 is the time to wait, seems like the perfect amount of time to let all data load.
+  }, 1000) //1000 is the time to wait, seems like the perfect amount of time to let all data load.
 
 })

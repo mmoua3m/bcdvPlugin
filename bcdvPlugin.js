@@ -100,7 +100,7 @@ videojs.registerPlugin('bcdvPlugin', function() {
       console.log(err)
     }
     try {
-      console.log(myPlayer.mediainfo)
+      console.log("info before transcript check", myPlayer.mediainfo)
       if ( myPlayer.mediainfo.transcripts[0] ){ //Check for a transcript (the first one found)
         transcriptButton()
       }

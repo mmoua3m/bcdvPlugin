@@ -30,7 +30,6 @@ videojs.registerPlugin('bcdvPlugin', function() {
       controlText: 'Described Video',
       className: 'vjs-visible-text',
       clickHandler: function() {
-        try{
           //Load and play video based on what's already loaded
           if ( watchingOriginalVideo == true ) { //If we have the original video loaded and we click the button, load the described video
             myPlayer.catalog.getVideo(describedVideoID, function(error, video) {
@@ -48,10 +47,6 @@ videojs.registerPlugin('bcdvPlugin', function() {
             dvButton.controlText("Described Video") //Change our button text
             watchingOriginalVideo = true; //Flip the switch so we know what we're currently watching
           }
-        }
-        catch(err) {
-          console.log(err)
-        }
       }
 
     });

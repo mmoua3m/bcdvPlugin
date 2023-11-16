@@ -9,9 +9,9 @@ videojs.registerPlugin('bcdvPlugin', function() {
   setTimeout(function(){
     originalID = myPlayer.mediainfo.id //Original videoID we loaded with, this is used for switching back to viewing from described video
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
-    console.log("Described video ID is", describedVideoID)
-    console.log("Original video ID is", originalID)
-    console.log(myPlayer.mediainfo)
+    // console.log("Described video ID is", describedVideoID)
+    // console.log("Original video ID is", originalID)
+    // console.log(myPlayer.mediainfo)
   }, 500)
 
   // Used for HTML DOM placement of our transcript box
@@ -100,6 +100,7 @@ videojs.registerPlugin('bcdvPlugin', function() {
       console.log(err)
     }
     try {
+      console.log(myPlayer.mediainfo)
       if ( myPlayer.mediainfo.transcripts[0] ){ //Check for a transcript (the first one found)
         transcriptButton()
       }

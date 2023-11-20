@@ -1,4 +1,4 @@
-// 11-15-2023 11:15AM
+// 11-20-2023 8:52AM
 videojs.registerPlugin('bcdvPlugin', function() {
   var myPlayer = this //Our video player
   var originalID;
@@ -18,6 +18,11 @@ videojs.registerPlugin('bcdvPlugin', function() {
   myPlayer.getChild('ControlBar').removeChild('FullscreenToggle')
   myPlayer.getChild('ControlBar').removeChild('PlaybackRateMenuButton')
   myPlayer.getChild('ControlBar').removeChild('PictureInPictureToggle')
+
+  // Create our transcriptBox div to add transcript text to
+  var newDiv = document.createElement("div");
+  newDiv.setAttribute("id", "transcriptBox")
+  document.body.appendChild(newDiv); //Append our new transcriptBox div
  
   // Described/Original video button
   function dvButton(){
@@ -49,10 +54,7 @@ videojs.registerPlugin('bcdvPlugin', function() {
 
   // Transcript button code
   function transcriptButton(){
-    // Create our transcriptBox div to add transcript text to
-    var newDiv = document.createElement("div");
-    newDiv.setAttribute("id", "transcriptBox")
-    document.body.appendChild(newDiv); //Append our new transcriptBox div
+  
     //The button itself
     var transcriptButton = myPlayer.getChild('ControlBar').addChild('button', {
       controlText: 'Transcript',

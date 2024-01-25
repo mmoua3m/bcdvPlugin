@@ -13,7 +13,7 @@ videojs.registerPlugin('localizationPlugin', function() {
   setTimeout( function(){ //Delayed code
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
     originalID = myPlayer.mediainfo.id
-    console.log("Described video ID now set to", describedVideoID)
+    // console.log("Described video ID now set to", describedVideoID)
     //Playlist Code
     playlistArray = myPlayer.playlistMenu.items
     // console.log("Playlist items", playlistArray)
@@ -27,7 +27,7 @@ videojs.registerPlugin('localizationPlugin', function() {
             myPlayer.play()
             originalID = myPlayer.mediainfo.id // For our custom button
             describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
-            console.log("swapping original id to", originalID, "described video id to", describedVideoID)
+            // console.log("swapping original id to", originalID, "described video id to", describedVideoID)
 
             // Reset our buttons
             watchingOriginalVideo = true;

@@ -1,4 +1,4 @@
-// 1-25-2024 8:57AM
+// 1-25-2024 10:39AM
 videojs.registerPlugin('localizationPlugin', function() {
   var myPlayer = this //Our video player
   let originalID; //Original videoID we loaded with, this is used for switching back to viewing from described video

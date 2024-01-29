@@ -8,7 +8,8 @@ videojs.registerPlugin('localizationPlugin', function() {
   let viewingTranscript = false;
   let playlistArray;
   let nextVideo;
- 
+
+  console.log("Updated @1/29/2024 2:39")
 
   setTimeout( function(){ //Delayed code
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id

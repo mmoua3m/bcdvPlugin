@@ -1,4 +1,4 @@
-// 1-29-2024 12:42AM
+// 1-29-2024 2:26AM
 videojs.registerPlugin('localizationPlugin', function() {
   var myPlayer = this //Our video player
   let originalID; //Original videoID we loaded with, this is used for switching back to viewing from described video
@@ -493,6 +493,6 @@ videojs.registerPlugin('localizationPlugin', function() {
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
     myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
     myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
-  }, 800) //800 is the time to wait, seems like the perfect amount of time to let all data load.
+  }, 1000) //1000 is the time to wait, seems like the perfect amount of time to let all data load.
 
 })

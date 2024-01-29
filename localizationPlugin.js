@@ -63,13 +63,13 @@ videojs.registerPlugin('localizationPlugin', function() {
               myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
               
             })
-          }, 200)
+          }, 600)
           // videojs.log("new video id", myPlayer.mediainfo.id, "nextvideo", nextVideo)
         })
       });
       // console.log('player options: ', myPlayer.options())
     });
-  }, 500)
+  }, 600)
 
 
   //Setting our JSON dictionaries
@@ -494,6 +494,6 @@ videojs.registerPlugin('localizationPlugin', function() {
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
     myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
     myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
-  }, 1500) //1000 is the time to wait, seems like the perfect amount of time to let all data load.
+  }, 600) //300 is the time to wait, seems like the perfect amount of time to let all data load.
 
 })

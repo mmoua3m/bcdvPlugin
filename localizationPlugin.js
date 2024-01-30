@@ -403,7 +403,7 @@ videojs.registerPlugin('localizationPlugin', function() {
   function dvButton(){
     myPlayer.getChild('controlBar').addChild('dvButton', {
       text: 'Described Video',
-      controlText: 'tDescribed Video',
+      controlText: 'Described Video',
       className: 'vjs-visible-text',
       clickHandler: function(event) {
         this.addClass('dvButton')
@@ -443,7 +443,7 @@ videojs.registerPlugin('localizationPlugin', function() {
     
     //The button itself
     const transcriptButton = myPlayer.getChild('ControlBar').addChild('button', {
-      controlText: myPlayer.localize("tTranscript"),
+      controlText: myPlayer.localize("Transcript"),
       className: 'vjs-visible-text',
       clickHandler: function(event) { //What the button does upon being clicked
         if  ( viewingTranscript ){ //If we can already see the transcript, hide the transcript div
@@ -494,6 +494,6 @@ videojs.registerPlugin('localizationPlugin', function() {
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
     myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
     myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
-  }, 800) //600 is the time to wait, seems like the perfect amount of time to let all data load. Originally 600
+  }, 1000) //600 is the time to wait, seems like the perfect amount of time to let all data load. Originally 600
 
 })

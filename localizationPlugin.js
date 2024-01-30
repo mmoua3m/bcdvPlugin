@@ -1,4 +1,3 @@
-// 1-29-2024 2:26AM
 videojs.registerPlugin('localizationPlugin', function() {
   var myPlayer = this //Our video player
   let originalID; //Original videoID we loaded with, this is used for switching back to viewing from described video
@@ -9,8 +8,8 @@ videojs.registerPlugin('localizationPlugin', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("localizationPlugin last updated @1/29/2024 2:48")
-
+  console.log("Updated @1/30/2024 2:18 pm")
+ 
   setTimeout( function(){ //Delayed code
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
     originalID = myPlayer.mediainfo.id
@@ -32,6 +31,7 @@ videojs.registerPlugin('localizationPlugin', function() {
 
             // Reset our buttons
             watchingOriginalVideo = true;
+            viewingTranscript = false
             const tBox = document.getElementById("transcriptBox")
             tBox.style.display = 'none'
             setTimeout(function(){
@@ -63,13 +63,13 @@ videojs.registerPlugin('localizationPlugin', function() {
               myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
               
             })
-          }, 600)
+          }, 400)
           // videojs.log("new video id", myPlayer.mediainfo.id, "nextvideo", nextVideo)
         })
       });
       // console.log('player options: ', myPlayer.options())
     });
-  }, 600)
+  }, 400)
 
 
   //Setting our JSON dictionaries
@@ -403,7 +403,7 @@ videojs.registerPlugin('localizationPlugin', function() {
   function dvButton(){
     myPlayer.getChild('controlBar').addChild('dvButton', {
       text: 'Described Video',
-      controlText: 'Described Video',
+      controlText: 'tDescribed Video',
       className: 'vjs-visible-text',
       clickHandler: function(event) {
         this.addClass('dvButton')
@@ -443,7 +443,7 @@ videojs.registerPlugin('localizationPlugin', function() {
     
     //The button itself
     const transcriptButton = myPlayer.getChild('ControlBar').addChild('button', {
-      controlText: myPlayer.localize("Transcript"),
+      controlText: myPlayer.localize("tTranscript"),
       className: 'vjs-visible-text',
       clickHandler: function(event) { //What the button does upon being clicked
         if  ( viewingTranscript ){ //If we can already see the transcript, hide the transcript div
@@ -494,6 +494,6 @@ videojs.registerPlugin('localizationPlugin', function() {
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
     myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
     myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
-  }, 600) //600 is the time to wait, seems like the perfect amount of time to let all data load.
+  }, 800) //600 is the time to wait, seems like the perfect amount of time to let all data load. Originally 600
 
 })

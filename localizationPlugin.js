@@ -8,7 +8,7 @@ videojs.registerPlugin('localizationPlugin', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Updated @1/30/2024 2:18 pm")
+  console.log("Updated @1/31/2024 9:18 pm")
  
   setTimeout( function(){ //Delayed code
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
@@ -63,13 +63,13 @@ videojs.registerPlugin('localizationPlugin', function() {
               myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
               
             })
-          }, 400)
+          }, 500)
           // videojs.log("new video id", myPlayer.mediainfo.id, "nextvideo", nextVideo)
         })
       });
       // console.log('player options: ', myPlayer.options())
     });
-  }, 400)
+  }, 500)
 
 
   //Setting our JSON dictionaries
@@ -494,6 +494,6 @@ videojs.registerPlugin('localizationPlugin', function() {
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
     myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
     myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
-  }, 1000) //600 is the time to wait, seems like the perfect amount of time to let all data load. Originally 600
+  }, 1200) //600 is the time to wait, seems like the perfect amount of time to let all data load. Originally 600
 
 })

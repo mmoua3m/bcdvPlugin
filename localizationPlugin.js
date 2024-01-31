@@ -8,7 +8,7 @@ videojs.registerPlugin('localizationPlugin', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Updated @1/31/2024 9:18 pm")
+  console.log("Updated @1/31/2024 11:24")
  
   setTimeout( function(){ //Delayed code
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
@@ -474,7 +474,7 @@ videojs.registerPlugin('localizationPlugin', function() {
   setTimeout(function(){
     // If we don't use trycatch, it will crash our script and the original buttons won't get added back
     try {
-      if ( describedVideoID ){ //Check for a described video
+      if ( myPlayer.mediainfo.custom_fields.described_video_id ){ //Check for a described video
         dvButton()
       }
     }
@@ -494,6 +494,6 @@ videojs.registerPlugin('localizationPlugin', function() {
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
     myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
     myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
-  }, 1200) //600 is the time to wait, seems like the perfect amount of time to let all data load. Originally 600
+  }, 1000) //600 is the time to wait, seems like the perfect amount of time to let all data load. Originally 600
 
 })

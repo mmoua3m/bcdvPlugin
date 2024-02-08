@@ -1,31 +1,5 @@
 videojs.registerPlugin('localizationPlugin', function() {
   var myPlayer = this //Our video player
-
-  //Handle URL Parsing
-  let playlistload;
-  let videoload;
-  const queryString = window.location.search
-  const urlParams = new URLSearchParams(queryString)
-  const urlPlaylistID = urlParams.get('playlistID')
-  const urlVideoID = urlParams.get('videoID')
-  if (urlPlaylistID){
-    playlistload = true;
-    //Load playlist
-    myPlayer.catalog.getPlaylist(urlPlaylistID, function(error, playlist){
-      //deal with error
-      myPlayer.catalog.load(playlist);
-    });
-  }
-  else if (urlVideoID && !playlistload){ //If we have a videoID AND a playlistID, only load playlist
-    videoload = true
-    myPlayer.catalog.getVideo(urlVideoID, function(error, video) {
-      setTimeout( function(){
-        myPlayer.catalog.load(video);
-      }, 200)
-    })
-  }
-  //End URL Parsing
-
   let originalID; //Original videoID we loaded with, this is used for switching back to viewing from described video
   let describedVideoID;
   let tText = "" //Our transcript text
@@ -34,7 +8,7 @@ videojs.registerPlugin('localizationPlugin', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Updated @2/8/2024 1:18 pm")
+  console.log("Updated @1/31/2024 11:24")
  
   setTimeout( function(){ //Delayed code
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
@@ -423,10 +397,7 @@ videojs.registerPlugin('localizationPlugin', function() {
     }
   }
 
-  videojs.registerComponent('dvButton', MyComponent);
-
-  
-  
+  videojs.registerComponent('dvButton', MyComponent);  
  
   // Described/Original video button
   function dvButton(){

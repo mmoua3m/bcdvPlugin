@@ -35,7 +35,7 @@ videojs.registerPlugin('localizationPlugin', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Updated @2/8/2024 2:41 pm")
+  console.log("Updated @2/8/2024 3:21 pm")
  
   setTimeout( function(){ //Delayed code
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
@@ -468,6 +468,8 @@ videojs.registerPlugin('localizationPlugin', function() {
     var newDiv = document.createElement("div");
     newDiv.setAttribute("id", "transcriptBox")
     // var currentDiv = document.getElementById("myPlayerID");
+    var classDiv = document.getElementsByClassName("vjs-playlist")[0]
+    classDiv.setAttribute('id', 'playlistUI')
     var currentDiv = document.getElementById("playlistUI");
     insertAfter(newDiv, currentDiv)
     

@@ -23,6 +23,9 @@ videojs.registerPlugin('localizationPlugin', function() {
         myPlayer.catalog.load(video);
       }, 200)
     })
+  } else if (!urlPlaylistID & !urlVideoID){ //No video or playlist supplied, throw a video player error if possible
+    // videojs.log('No video or playlist supplied, double check URL.')
+    myPlayer.src('No video or playlist supplied')
   }
 
   
@@ -35,7 +38,7 @@ videojs.registerPlugin('localizationPlugin', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Updated @2/8/2024 3:21 pm")
+  console.log("Updated @2/8/2024 4:21 pm")
  
   setTimeout( function(){ //Delayed code
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id

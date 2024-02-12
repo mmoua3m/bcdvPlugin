@@ -10,9 +10,8 @@ videojs.registerPlugin('localizationPlugin', function() {
   const urlVideoID = urlParams.get('videoID')
   if (urlPlaylistID){
     playlistload = true;
-    //Load playlist
     myPlayer.catalog.getPlaylist(urlPlaylistID, function(error, playlist){
-      //deal with error
+      if (error){myPlayer.createModal(error.data[0].message+" Playlist ID: "+urlPlaylistID)}
       myPlayer.catalog.load(playlist);
     });
   }
@@ -20,15 +19,17 @@ videojs.registerPlugin('localizationPlugin', function() {
     videoload = true
     myPlayer.catalog.getVideo(urlVideoID, function(error, video) {
       setTimeout( function(){
+        if (error){myPlayer.createModal(error.data[0].message+" Video ID: "+urlVideoID)}
         myPlayer.catalog.load(video);
       }, 200)
     })
   } else if (!urlPlaylistID & !urlVideoID){ //No video or playlist supplied, throw a video player error if possible
     // videojs.log('No video or playlist supplied, double check URL.')
-    myPlayer.src('No video or playlist supplied')
+    // myPlayer.src('No video or playlist supplied')
+    // myPlayer.error('test')
+    myPlayer.createModal('Video or playlist not supplied.')
   }
 
-  
 
   let originalID; //Original videoID we loaded with, this is used for switching back to viewing from described video
   let describedVideoID;
@@ -38,7 +39,7 @@ videojs.registerPlugin('localizationPlugin', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Updated @2/8/2024 4:21 pm")
+  console.log("Updated @2/12/2024 10:27 am")
  
   setTimeout( function(){ //Delayed code
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
@@ -430,8 +431,7 @@ videojs.registerPlugin('localizationPlugin', function() {
   videojs.registerComponent('dvButton', MyComponent);
 
   
-  
- 
+
   // Described/Original video button
   function dvButton(){
     myPlayer.getChild('controlBar').addChild('dvButton', {

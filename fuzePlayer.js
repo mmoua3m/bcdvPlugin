@@ -39,7 +39,7 @@ videojs.registerPlugin('localizationPlugin', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Updated @2/20/2024 8:43 am")
+  console.log("Updated @2/20/2024 10:47 am")
  
   setTimeout( function(){ //Delayed code
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id

@@ -583,6 +583,6 @@ videojs.registerPlugin('localizationPlugin', function() {
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
     myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
     myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
-  }, 500) //500 is the time to wait, seems like the perfect amount of time to let all data load. Originally 600
+  }, 800) //500 is the time to wait, seems like the perfect amount of time to let all data load. Originally 600
 
 })

@@ -39,14 +39,19 @@ videojs.registerPlugin('localizationPlugin', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Updated @2/12/2024 10:27 am")
+  console.log("Updated @2/20/2024 8:43 am")
  
   setTimeout( function(){ //Delayed code
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
     originalID = myPlayer.mediainfo.id
     // console.log("Described video ID now set to", describedVideoID)
+
     //Playlist Code
     playlistArray = myPlayer.playlistMenu.items
+    let playlistIDs = []
+    for ( x of playlistArray ){
+      playlistIDs.push(x.item.id)
+    }
     // console.log("Playlist items", playlistArray)
     myPlayer.catalog.getPlaylist(myPlayer.playlistinfo.id, function(error, playlist){
       myPlayer.catalog.load(playlist);
@@ -98,9 +103,60 @@ videojs.registerPlugin('localizationPlugin', function() {
           // videojs.log("new video id", myPlayer.mediainfo.id, "nextvideo", nextVideo)
         })
       });
-      // console.log('player options: ', myPlayer.options())
-    });
-  }, 500)
+    })//End playlist code
+
+    //Click handler for next button
+    const nextButton = myPlayer.getChild('controlBar').getChild('NextButton')
+    nextButton.on('click', function() {
+      // console.log(playlistIDs)
+      // console.log('current video is index', playlistIDs.indexOf(originalID))
+      let nextButtonVideo = playlistIDs[playlistIDs.indexOf(originalID)+1]
+      myPlayer.catalog.getVideo(nextButtonVideo, function(error, video) {
+        myPlayer.catalog.load(video)
+        setTimeout( function() { // Short Delay
+          originalID = myPlayer.mediainfo.id // For our custom button
+          describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
+          // console.log("swapping original id to", originalID, "described video id to", describedVideoID)
+
+          // Reset our buttons
+          watchingOriginalVideo = true;
+          viewingTranscript = false
+          const tBox = document.getElementById("transcriptBox")
+          tBox.style.display = 'none'
+          setTimeout(function(){
+            myPlayer.getChild('ControlBar').removeChild('FullscreenToggle')
+            myPlayer.getChild('ControlBar').removeChild('PlaybackRateMenuButton')
+            myPlayer.getChild('ControlBar').removeChild('PictureInPictureToggle')
+            myPlayer.getChild('ControlBar').removeChild('dvButton')
+            myPlayer.getChild('ControlBar').removeChild('Button')
+            //If we don't use trycatch, it will crash our script and the original buttons won't get added back
+            try {
+              if ( describedVideoID ){ //Check for a described video
+                dvButton()
+              }
+            }
+            catch(err) {
+              console.log("Error fetching described video", err)
+            }
+            try {
+              if ( myPlayer.mediainfo.transcripts[0] && watchingOriginalVideo == true ){ // Only if we're not watching a described video
+                transcriptButton()
+              }
+            }
+            catch(err) {
+              console.log("Error fetching transcript", err)
+            }
+            //Add our buttons back after the new one(s)
+            myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
+            myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
+            myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
+            
+          })
+        }, 500)
+      })
+    }); //End click handler for Next Button
+
+  }, 300)
 
 
   //Setting our JSON dictionaries
@@ -430,8 +486,6 @@ videojs.registerPlugin('localizationPlugin', function() {
 
   videojs.registerComponent('dvButton', MyComponent);
 
-  
-
   // Described/Original video button
   function dvButton(){
     myPlayer.getChild('controlBar').addChild('dvButton', {
@@ -529,6 +583,6 @@ videojs.registerPlugin('localizationPlugin', function() {
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
     myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
     myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
-  }, 1000) //1000 is the time to wait, seems like the perfect amount of time to let all data load. Originally 600
+  }, 500) //500 is the time to wait, seems like the perfect amount of time to let all data load. Originally 600
 
 })

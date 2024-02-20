@@ -1,4 +1,4 @@
-videojs.registerPlugin('localizationPlugin', function() {
+videojs.registerPlugin('fuzePlugin', function() {
   var myPlayer = this //Our video player
 
   //Handle URL Parsing

@@ -1,13 +1,13 @@
-videojs.registerPlugin('fuzePlugin', function() {
+videojs.registerPlugin('fuzePlayer', function() {
   var myPlayer = this //Our video player
 
   //Handle URL Parsing
-  let playlistload;
-  let videoload;
-  const queryString = window.location.search
-  const urlParams = new URLSearchParams(queryString)
-  const urlPlaylistID = urlParams.get('playlistID')
-  const urlVideoID = urlParams.get('videoID')
+  // let playlistload;
+  // let videoload;
+  // const queryString = window.location.search
+  // const urlParams = new URLSearchParams(queryString)
+  // const urlPlaylistID = urlParams.get('playlistID')
+  // const urlVideoID = urlParams.get('videoID')
   // if (urlPlaylistID){
   //   playlistload = true;
   //   myPlayer.catalog.getPlaylist(urlPlaylistID, function(error, playlist){
@@ -73,7 +73,7 @@ videojs.registerPlugin('fuzePlugin', function() {
             setTimeout(function(){
               myPlayer.getChild('ControlBar').removeChild('FullscreenToggle')
               myPlayer.getChild('ControlBar').removeChild('PlaybackRateMenuButton')
-              myPlayer.getChild('ControlBar').removeChild('PictureInPictureToggle')
+              // myPlayer.getChild('ControlBar').removeChild('PictureInPictureToggle')
               myPlayer.getChild('ControlBar').removeChild('dvButton')
               myPlayer.getChild('ControlBar').removeChild('Button')
               //If we don't use trycatch, it will crash our script and the original buttons won't get added back
@@ -95,7 +95,7 @@ videojs.registerPlugin('fuzePlugin', function() {
               }
               //Add our buttons back after the new one(s)
               myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
-              myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
+              // myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
               myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
               
             })
@@ -126,7 +126,7 @@ videojs.registerPlugin('fuzePlugin', function() {
           setTimeout(function(){
             myPlayer.getChild('ControlBar').removeChild('FullscreenToggle')
             myPlayer.getChild('ControlBar').removeChild('PlaybackRateMenuButton')
-            myPlayer.getChild('ControlBar').removeChild('PictureInPictureToggle')
+            // myPlayer.getChild('ControlBar').removeChild('PictureInPictureToggle')
             myPlayer.getChild('ControlBar').removeChild('dvButton')
             myPlayer.getChild('ControlBar').removeChild('Button')
             //If we don't use trycatch, it will crash our script and the original buttons won't get added back
@@ -148,7 +148,7 @@ videojs.registerPlugin('fuzePlugin', function() {
             }
             //Add our buttons back after the new one(s)
             myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
-            myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
+            // myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
             myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
             
           })
@@ -474,7 +474,7 @@ videojs.registerPlugin('fuzePlugin', function() {
   // Remove buttons for reordering if we don't remove these, our custome button will appear at the end. We'll add these back at the bottom
   myPlayer.getChild('ControlBar').removeChild('FullscreenToggle')
   myPlayer.getChild('ControlBar').removeChild('PlaybackRateMenuButton')
-  myPlayer.getChild('ControlBar').removeChild('PictureInPictureToggle')
+  // myPlayer.getChild('ControlBar').removeChild('PictureInPictureToggle')
 
   const Component = videojs.getComponent('Button');
 
@@ -529,6 +529,8 @@ videojs.registerPlugin('fuzePlugin', function() {
     classDiv.setAttribute('id', 'playlistUI')
     var currentDiv = document.getElementById("playlistUI");
     insertAfter(newDiv, currentDiv)
+    const tBox = document.getElementById("transcriptBox")
+    tBox.style.display = 'none'
     
     //The button itself
     const transcriptButton = myPlayer.getChild('ControlBar').addChild('button', {
@@ -581,7 +583,7 @@ videojs.registerPlugin('fuzePlugin', function() {
     }
     //Add our buttons back after the new one(s)
     myPlayer.getChild('ControlBar').addChild('PlaybackRateMenuButton')
-    myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
+    // myPlayer.getChild('ControlBar').addChild('PictureInPictureToggle')
     myPlayer.getChild('ControlBar').addChild('FullscreenToggle')
   }, 800) //600 is the time to wait, seems like the perfect amount of time to let all data load. Originally 600
 

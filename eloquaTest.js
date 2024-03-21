@@ -39,7 +39,7 @@ videojs.registerPlugin('fuzePlayer', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Fuze plugin updated @3/21/2024 12:29 pm")
+  console.log("Fuze plugin updated @3/21/2024 12:44 pm")
  
   setTimeout( function(){ //Delayed code
     console.log(myPlayer.mediainfo)
@@ -157,7 +157,7 @@ videojs.registerPlugin('fuzePlayer', function() {
       })
     }); //End click handler for Next Button
 
-  }, 800)
+  }, 300)
 
 
   //Setting our JSON dictionaries
@@ -523,20 +523,22 @@ videojs.registerPlugin('fuzePlayer', function() {
   // Transcript button code
   function transcriptButton(){
     // Create our transcriptBox div to add transcript text to
-    try{
-      var newDiv = document.createElement("div");
-      newDiv.setAttribute("id", "transcriptBox")
-    } catch(err) {console.log('1',err)}
-    
+    var newDiv = document.createElement("div");
+    newDiv.setAttribute("id", "transcriptBox")
     // var currentDiv = document.getElementById("myPlayerID");
+
+    // Transcript div creation based off of playlist UI or single video
     try{
       var classDiv = document.getElementsByClassName("vjs-playlist")[0]
       classDiv.setAttribute('id', 'playlistUI')
       var currentDiv = document.getElementById("playlistUI");
-      insertAfter(newDiv, currentDiv)
-      const tBox = document.getElementById("transcriptBox")
-      tBox.style.display = 'none'
-    } catch(err){console.log('2',err)}
+    } catch(err){
+      console.log('no playlist ui')
+      var currentDiv = document.getElementById("myPlayerID")
+    }
+    insertAfter(newDiv, currentDiv)
+    const tBox = document.getElementById("transcriptBox")
+    tBox.style.display = 'none' 
     
     
     //The button itself

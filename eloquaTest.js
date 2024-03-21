@@ -157,7 +157,7 @@ videojs.registerPlugin('fuzePlayer', function() {
       })
     }); //End click handler for Next Button
 
-  }, 300)
+  }, 800)
 
 
   //Setting our JSON dictionaries

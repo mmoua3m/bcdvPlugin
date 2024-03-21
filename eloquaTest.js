@@ -39,7 +39,7 @@ videojs.registerPlugin('fuzePlayer', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Fuze plugin updated @3/21/2024 12:44 pm")
+  console.log("Eloqua plugin updated @3/21/2024 1:01 pm")
  
   setTimeout( function(){ //Delayed code
     console.log(myPlayer.mediainfo)
@@ -157,7 +157,7 @@ videojs.registerPlugin('fuzePlayer', function() {
       })
     }); //End click handler for Next Button
 
-  }, 300)
+  }, 800)
 
 
   //Setting our JSON dictionaries
@@ -524,6 +524,7 @@ videojs.registerPlugin('fuzePlayer', function() {
   function transcriptButton(){
     // Create our transcriptBox div to add transcript text to
     var newDiv = document.createElement("div");
+    var currentDiv;
     newDiv.setAttribute("id", "transcriptBox")
     // var currentDiv = document.getElementById("myPlayerID");
 
@@ -534,7 +535,7 @@ videojs.registerPlugin('fuzePlayer', function() {
       var currentDiv = document.getElementById("playlistUI");
     } catch(err){
       console.log('no playlist ui')
-      var currentDiv = document.getElementById("myPlayerID")
+      var classDiv = document.getElementsByClassName("vjs-control-bar")[0]
     }
     insertAfter(newDiv, currentDiv)
     const tBox = document.getElementById("transcriptBox")

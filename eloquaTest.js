@@ -39,7 +39,7 @@ videojs.registerPlugin('fuzePlayer', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Fuze plugin updated @3/21/2024 1:07 pm")
+  console.log("Fuze plugin updated @3/21/2024 1:12 pm")
  
   setTimeout( function(){ //Delayed code
     console.log(myPlayer.mediainfo)
@@ -526,16 +526,17 @@ videojs.registerPlugin('fuzePlayer', function() {
     var newDiv = document.createElement("div");
     var currentDiv;
     newDiv.setAttribute("id", "transcriptBox")
-    // var currentDiv = document.getElementById("myPlayerID");
 
     // Transcript div creation based off of playlist UI or single video
-    try{
-      var classDiv = document.getElementsByClassName("vjs-playlist")[0]
+    if (document.getElementsByClassName("vjs-playlist")[0]){
+      classDiv = document.getElementsByClassName("vjs-playlist")[0]
       classDiv.setAttribute('id', 'playlistUI')
       var currentDiv = document.getElementById("playlistUI");
-    } catch(err){
+    }
+    else {
       console.log('No playlist UI found.')
-      var classDiv = document.getElementsByClassName("vjs-control-bar")[0]
+      console.log(document.getElementsByClassName("vjs-control-bar"))
+      classDiv = document.getElementsByClassName("vjs-control-bar")[0]
       classDiv.setAttribute('id', 'playlistUI')
     }
     insertAfter(newDiv, currentDiv)

@@ -39,7 +39,7 @@ videojs.registerPlugin('fuzePlayer', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Fuze plugin updated @3/21/2024 1:12 pm")
+  console.log("Fuze plugin updated @3/21/2024 1:15 pm")
  
   setTimeout( function(){ //Delayed code
     console.log(myPlayer.mediainfo)
@@ -531,13 +531,13 @@ videojs.registerPlugin('fuzePlayer', function() {
     if (document.getElementsByClassName("vjs-playlist")[0]){
       classDiv = document.getElementsByClassName("vjs-playlist")[0]
       classDiv.setAttribute('id', 'playlistUI')
-      var currentDiv = document.getElementById("playlistUI");
+      currentDiv = document.getElementById("playlistUI");
     }
     else {
       console.log('No playlist UI found.')
-      console.log(document.getElementsByClassName("vjs-control-bar"))
       classDiv = document.getElementsByClassName("vjs-control-bar")[0]
       classDiv.setAttribute('id', 'playlistUI')
+      currentDiv = document.getElementById("playlistUI");
     }
     insertAfter(newDiv, currentDiv)
     const tBox = document.getElementById("transcriptBox")

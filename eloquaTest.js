@@ -39,7 +39,7 @@ videojs.registerPlugin('fuzePlayer', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Fuze plugin updated @3/21/2024 1:15 pm")
+  console.log("Fuze plugin updated @3/21/2024 1:28 pm")
  
   setTimeout( function(){ //Delayed code
     console.log(myPlayer.mediainfo)
@@ -535,7 +535,7 @@ videojs.registerPlugin('fuzePlayer', function() {
     }
     else {
       console.log('No playlist UI found.')
-      classDiv = document.getElementsByClassName("vjs-control-bar")[0]
+      classDiv = document.getElementsByClassName("vjs-fluid")[0]
       classDiv.setAttribute('id', 'playlistUI')
       currentDiv = document.getElementById("playlistUI");
     }

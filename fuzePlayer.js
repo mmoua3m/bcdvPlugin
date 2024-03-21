@@ -42,10 +42,9 @@ videojs.registerPlugin('fuzePlayer', function() {
   console.log("Updated @3/21/2024 12:11 am")
  
   setTimeout( function(){ //Delayed code
-    console.log(myPlayer.mediainfo.id)
+    console.log(myPlayer.mediainfo)
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
     originalID = myPlayer.mediainfo.id
-    // console.log("Described video ID now set to", describedVideoID)
 
     //Playlist Code
     playlistArray = myPlayer.playlistMenu.items

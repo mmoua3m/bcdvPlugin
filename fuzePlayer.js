@@ -39,9 +39,10 @@ videojs.registerPlugin('fuzePlayer', function() {
   let playlistArray;
   let nextVideo;
 
-  console.log("Updated @2/27/2024 8:29 am")
+  console.log("Updated @3/21/2024 12:11 am")
  
   setTimeout( function(){ //Delayed code
+    console.log(myPlayer.mediainfo.id)
     describedVideoID = myPlayer.mediainfo.custom_fields.described_video_id
     originalID = myPlayer.mediainfo.id
     // console.log("Described video ID now set to", describedVideoID)
@@ -156,7 +157,7 @@ videojs.registerPlugin('fuzePlayer', function() {
       })
     }); //End click handler for Next Button
 
-  }, 300)
+  }, 500)
 
 
   //Setting our JSON dictionaries
